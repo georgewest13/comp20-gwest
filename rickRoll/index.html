@@ -28,50 +28,38 @@
         theOutputDiv = document.getElementById("lyrics");
         if (currTime == 18) {
           theOutputDiv.innerHTML = "We're no strangers to love";
-        } else if (currTime == 23) {
-          theOutputDiv.innerHTML = "You know the rules and so do I";
-        } else if (currTime == 27) {
-          theOutputDiv.innerHTML = "A full commitment's what I'm thinking of";
-        } else if (currTime == 30) {
-          theOutputDiv.innerHTML = "You wouldn't get this from any other guy";
+          theOutputDiv.innerHTML += "<div>You know the rules and so do I </div>";
+          theOutputDiv.innerHTML += "<div>A full commitment's what I'm thinking of </div>";
+          theOutputDiv.innerHTML += "<div>You wouldn't get this from any other guy </div>";
         } else if (currTime == 35 || currTime == 153) {
           theOutputDiv.innerHTML = "I just wanna tell you how I'm feeling";
-        } else if (currTime == 40 || currTime == 158) {
-          theOutputDiv.innerHTML = "Gotta make you understand";
+          theOutputDiv.innerHTML += "<div>Gotta make you understand </div>";
         } else if (currTime == 42 || currTime == 85 || currTime == 102 ||
                    currTime == 161 || currTime == 178 || currTime == 195) {
           theOutputDiv.innerHTML = "Never gonna give you up";
-        } else if (currTime == 45 || currTime == 87 || currTime == 104 ||
-                   currTime == 163 || currTime == 180 || currTime == 197) {
-          theOutputDiv.innerHTML = "Never gonna let you down";
-        } else if (currTime == 47 || currTime == 89 || currTime == 106 ||
-                   currTime == 165 || currTime == 182 || currTime == 199) {
-          theOutputDiv.innerHTML = "Never gonna run around and desert you";
-        } else if (currTime == 51 || currTime == 94 || currTime == 111 ||
-                   currTime == 170 || currTime == 187 || currTime == 204) {
-          theOutputDiv.innerHTML = "Never gonna make you cry";
-        } else if (currTime == 53 || currTime == 96 || currTime == 113 ||
-                   currTime == 172 || currTime == 189 || currTime == 206) {
-          theOutputDiv.innerHTML = "Never gonna say goodbye";
-        } else if (currTime == 56 || currTime == 98 || currTime == 115 ||
-                   currTime == 174 || currTime == 191 || currTime == 208) {
-          theOutputDiv.innerHTML = "Never gonna tell a lie and hurt you";
+          theOutputDiv.innerHTML += "<div>Never gonna let you down</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna run around and desert you</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna make you cry</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna say goodbye</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna tell a lie and hurt you</div>";
         } else if (currTime == 60 || currTime == 136) {
           theOutputDiv.innerHTML = "We've known each other for so long";
-        } else if (currTime == 65 || currTime == 141) {
-          theOutputDiv.innerHTML = "Your heart's been aching, but";
-        } else if (currTime == 67 || currTime == 143) {
-          theOutputDiv.innerHTML = "You're too shy to say it";
-        } else if (currTime == 69 || currTime == 145) {
-          theOutputDiv.innerHTML = "Inside, we both know what's been going on";
-        } else if (currTime == 73 || currTime == 149) {
-          theOutputDiv.innerHTML = "We know the game and we're gonna play it";
+          theOutputDiv.innerHTML += "<div>Your heart's been aching, but</div>";
+          theOutputDiv.innerHTML += "<div>You're too shy to say it</div>";
+          theOutputDiv.innerHTML += "<div>Inside, we both know what's been going on</div>";
+          theOutputDiv.innerHTML += "<div>We know the game and we're gonna play it</div>";
         } else if (currTime == 77) {
           theOutputDiv.innerHTML = "And if you ask me how I'm feeling";
-        } else if (currTime == 82) {
-          theOutputDiv.innerHTML = "Don't tell me you're too blind to see";
-        } else if (currTime == 129 || currTime == 133) {
-          theOutputDiv.innerHTML = "Never gonna give, never gonna give";
+          theOutputDiv.innerHTML += "<div>Don't tell me you're too blind to see</div>";
+        } else if (currTime == 120) {
+          theOutputDiv.innerHTML = "(Ooh, give you up)";
+          theOutputDiv.innerHTML += "<div>(Ooh, give you up)</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna give, never gonna give</div>";
+          theOutputDiv.innerHTML += "<div>(Give you up)</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna give, never gonna give</div>";
+          theOutputDiv.innerHTML += "<div>(Give you up)</div>";
+        } else if (currTime == 212) {
+          theOutputDiv.innerHTML = "Hope you enjoyed the legendary troll :-)";
         }
       }
       
