@@ -26,7 +26,9 @@
 
       function displayLyrics(currTime) {
         theOutputDiv = document.getElementById("lyrics");
-        if (currTime == 18) {
+        if (currTime == 0) {
+          theOutputDiv.innerHTML = "The troll born again";
+        } else if (currTime == 18) {
           theOutputDiv.innerHTML = "We're no strangers to love";
           theOutputDiv.innerHTML += "<div>You know the rules and so do I </div>";
           theOutputDiv.innerHTML += "<div>A full commitment's what I'm thinking of </div>";
