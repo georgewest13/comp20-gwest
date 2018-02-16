@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rick Roll</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+
+  <body>
+
+    <h1 id="title">Rick Roll</h1>
+
+    <video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll"
+               controls></video>
+    <div id="lyrics"></div>
+
+    <script>
+      vid = document.getElementById("rickroll");
+      setInterval(updateLyrics, 1000);
+      
+      function updateLyrics() {
+        currTime = Math.floor(vid.currentTime);
+        console.log(currTime);
+        displayLyrics(currTime);
+      }
+
+      function displayLyrics(currTime) {
+        theOutputDiv = document.getElementById("lyrics");
+        if (currTime == 0) {
+          theOutputDiv.innerHTML = "The troll born again";
+        } else if (currTime == 18) {
+          theOutputDiv.innerHTML = "We're no strangers to love";
+          theOutputDiv.innerHTML += "<div>You know the rules and so do I </div>";
+          theOutputDiv.innerHTML += "<div>A full commitment's what I'm thinking of </div>";
+          theOutputDiv.innerHTML += "<div>You wouldn't get this from any other guy </div>";
+        } else if (currTime == 35 || currTime == 153) {
+          theOutputDiv.innerHTML = "I just wanna tell you how I'm feeling";
+          theOutputDiv.innerHTML += "<div>Gotta make you understand </div>";
+        } else if (currTime == 42 || currTime == 85 || currTime == 102 ||
+                   currTime == 161 || currTime == 178 || currTime == 195) {
+          theOutputDiv.innerHTML = "Never gonna give you up";
+          theOutputDiv.innerHTML += "<div>Never gonna let you down</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna run around and desert you</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna make you cry</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna say goodbye</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna tell a lie and hurt you</div>";
+        } else if (currTime == 60 || currTime == 136) {
+          theOutputDiv.innerHTML = "We've known each other for so long";
+          theOutputDiv.innerHTML += "<div>Your heart's been aching, but</div>";
+          theOutputDiv.innerHTML += "<div>You're too shy to say it</div>";
+          theOutputDiv.innerHTML += "<div>Inside, we both know what's been going on</div>";
+          theOutputDiv.innerHTML += "<div>We know the game and we're gonna play it</div>";
+        } else if (currTime == 77) {
+          theOutputDiv.innerHTML = "And if you ask me how I'm feeling";
+          theOutputDiv.innerHTML += "<div>Don't tell me you're too blind to see</div>";
+        } else if (currTime == 120) {
+          theOutputDiv.innerHTML = "(Ooh, give you up)";
+          theOutputDiv.innerHTML += "<div>(Ooh, give you up)</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna give, never gonna give</div>";
+          theOutputDiv.innerHTML += "<div>(Give you up)</div>";
+          theOutputDiv.innerHTML += "<div>Never gonna give, never gonna give</div>";
+          theOutputDiv.innerHTML += "<div>(Give you up)</div>";
+        } else if (currTime == 212) {
+          theOutputDiv.innerHTML = "Hope you enjoyed the legendary troll :-)";
+        }
+      }
+      
+    
+    </script>
+  </body>
+</html>
