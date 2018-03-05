@@ -1,8 +1,10 @@
+// creates a google API and mimics uber front end functionality
+
 var myLat = 0;
 var myLng = 0;
 var me = new google.maps.LatLng(myLat, myLng);
-var myOptions = {
-	zoom: 16, // The larger the zoom number, the bigger the zoom
+var setLoc = {
+	zoom: 16, 
 	center: me,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 };
@@ -12,7 +14,7 @@ var infowindow = new google.maps.InfoWindow();
 var shortDist = 6378137 * 0.000621371; 
 
 function init() {
-	map = new google.maps.Map(document.getElementById("map"), myOptions);
+	map = new google.maps.Map(document.getElementById("map"), setLoc);
 	getMyLocation(); //find my location
 }
 
@@ -24,20 +26,23 @@ function getMyLocation() {
 			addMe(); //render map
 			getCarsLocations(); // find all drivers
 			addMe(); // fix the shortest distance to a driver
+		}, function() {
+			alert("Couldn't find your location. Geolocation may be blocked" +
+					" due to insecure connection.");
 		});
 	}
 	else {
-		alert("Geolocation is not supported by your web browser.  What a shame!");
+		alert("Your web browser doesn't support Geolocation.");
 	}
 }
 
 function addMe() {
 	me = new google.maps.LatLng(myLat, myLng);
 
-	// Update map and go there...
+	// add me to map and go to me's location
 	map.panTo(me);
 	
-	// Create a marker
+	// create a marker
 	var marker = new google.maps.Marker({
 		position: me,
 		title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
@@ -46,7 +51,7 @@ function addMe() {
 	});
 	marker.setMap(map);
 	
-	// Open info window on click of marker
+	// create info window that displays on click
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
@@ -89,7 +94,7 @@ function getCarsLocations() {
 function addToMap(name, dist, lat, lng) {
 	car = new google.maps.LatLng(lat, lng);
 	
-	// Create a marker
+	// create a marker
 	var marker = new google.maps.Marker({
 		position: car,
 		title: "" + name + " is " + dist.toFixed(3) +  " miles to passenger",
@@ -97,7 +102,7 @@ function addToMap(name, dist, lat, lng) {
 	});
 	marker.setMap(map);
 		
-	// Open info window on click of marker
+	// create info window that displays on click
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
