@@ -15,7 +15,7 @@ var shortDist = 6378137 * 0.000621371;
 
 function init() {
 	map = new google.maps.Map(document.getElementById("map"), setLoc);
-	getMyLocation(); //find my location
+	getMyLocation(); // find my location
 }
 
 function getMyLocation() {
@@ -25,7 +25,7 @@ function getMyLocation() {
 			myLng = position.coords.longitude;
 			addMe(); //render map
 			getCarsLocations(); // find all drivers
-			addMe(); // fix the shortest distance to a driver
+			addMe(); //fix the shortest distance to a driver
 		}, function() {
 			alert("Couldn't find your location. Geolocation may be blocked" +
 					" due to insecure connection.");
