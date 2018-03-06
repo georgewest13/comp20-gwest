@@ -47,20 +47,18 @@ function addMe() {
 			var marker = new google.maps.Marker({
 				position: me,
 				title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
-				  " miles to driver",
+				  " miles to closest driver",
 				icon: 'icon.jpg'
 			});
 		} else {
 			var marker = new google.maps.Marker({
 				position: me,
 				title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
-				  " miles from passenger",
+				  " miles from closest passenger",
 				icon: 'car.png'
 			});
 		}
 		marker.setMap(map);
-	
-	
 	
 		// create info window that displays on click
 		google.maps.event.addListener(marker, 'click', function() {
@@ -111,41 +109,30 @@ function addToMap(name, dist, lat, lng) {
 	car = new google.maps.LatLng(lat, lng);
 	
 	// create a marker
-	var marker;/* = new google.maps.Marker({
-		position: car,
-		title: "" + name + " is " + dist.toFixed(3) +  " miles to passenger",
-		icon: 'car.png'
-	});
-	marker.setMap(map);
-		
-	// create info window that displays on click
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
-	});*/
-	if (Object.keys(data)[0] == "vehicles") {
-		console.log("wow");
-		marker = new google.maps.Marker({
-			position: car,
-			title: "" + name + " is " + dist.toFixed(3) +
-			  " miles from passenger",
-			icon: 'car.jpg'
-		});
-	} else {
-		marker = new google.maps.Marker({
-			position: car,
-			title: "" + name + " is " + dist.toFixed(3) +
-			  " miles to driver",
-			icon: 'icon.png'
+	if (data != 0) {
+		if (Object.keys(data)[0] == "vehicles") {
+			var marker = new google.maps.Marker({
+				position: car,
+				title: "" + name + " is " + shortDist.toFixed(3) +
+				  " miles from passenger",
+				icon: 'car.png'
+			});
+		} else {
+			var marker = new google.maps.Marker({
+				position: car,
+				title: "" + name + " is " + shortDist.toFixed(3) +
+				  " miles to driver",
+				icon: 'icon.jpg'
+			});
+		}
+		marker.setMap(map);
+	
+		// create info window that displays on click
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.setContent(marker.title);
+			infowindow.open(map, marker);
 		});
 	}
-	marker.setMap(map);
-		
-	// create info window that displays on click
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
-	});
 
 }
 

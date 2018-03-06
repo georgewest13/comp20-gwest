@@ -9,12 +9,3 @@ html, body {
 	height: 100%;
 }
 
-
-
-/*
-var marker = new google.maps.Marker({
-	position: me,
-	title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
-	  " miles to driver",
-	icon: 'icon.jpg'
-});*/
