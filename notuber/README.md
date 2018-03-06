@@ -5,4 +5,4 @@ correctly.
 data with Gavin Smith and Ravi Serota. As well, used Ming Chow's code as a 
 guideline to my project.
 
-3. I've spent about 10 hours on this project.
+3. I've spent about 12 hours on this project.
