@@ -12,6 +12,7 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 var shortDist = 6378137 * 0.000621371; 
+var data = 0;
 
 function init() {
 	map = new google.maps.Map(document.getElementById("map"), setLoc);
@@ -25,7 +26,6 @@ function getMyLocation() {
 			myLng = position.coords.longitude;
 			addMe(); //render map
 			getCarsLocations(); // find all drivers
-			addMe(); //fix the shortest distance to a driver
 		}, function() {
 			alert("Couldn't find your location. Geolocation may be blocked" +
 					" due to insecure connection.");
@@ -40,22 +40,34 @@ function addMe() {
 	me = new google.maps.LatLng(myLat, myLng);
 
 	// add me to map and go to me's location
-	map.panTo(me);
+    map.panTo(me);
+
+	if (data != 0) {
+		if (Object.keys(data)[0] == "vehicles") {
+			var marker = new google.maps.Marker({
+				position: me,
+				title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
+				  " miles to driver",
+				icon: 'icon.jpg'
+			});
+		} else {
+			var marker = new google.maps.Marker({
+				position: me,
+				title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
+				  " miles from passenger",
+				icon: 'car.png'
+			});
+		}
+		marker.setMap(map);
 	
-	// create a marker
-	var marker = new google.maps.Marker({
-		position: me,
-		title: "G1cLpMu7B2 is " + shortDist.toFixed(3) +
-		  " miles to driver",
-		icon: 'icon.jpg'
-	});
-	marker.setMap(map);
 	
-	// create info window that displays on click
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
-	});
+	
+		// create info window that displays on click
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.setContent(marker.title);
+			infowindow.open(map, marker);
+		});
+	}
 }
 
 function getCarsLocations() {
@@ -63,7 +75,7 @@ function getCarsLocations() {
 	var request = new XMLHttpRequest();
 
 	// Step 2: Open XHR
-	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", false);
+	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
 
     // Step 3: Set the request header to be returned
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -73,10 +85,12 @@ function getCarsLocations() {
   		if (request.readyState == 4 && request.status == 200) {
 	        var result = request.responseText;
 	     	data = JSON.parse(result);
-	     	for (cnt = 0; cnt < data.vehicles.length; cnt++) {
-	     		var lat = data.vehicles[cnt].lat;
-	     		var lng = data.vehicles[cnt].lng
-	     		var usrname = data.vehicles[cnt].username; 
+	     	values = Object.values(data);
+	     	lookFor = values[0] 
+	     	for (cnt = 0; cnt < lookFor.length; cnt++) {
+	     		var lat = lookFor[cnt].lat;
+	     		var lng = lookFor[cnt].lng
+	     		var usrname = lookFor[cnt].username; 
 	     		var car = new google.maps.LatLng(lat, lng);
 	     		var dist = google.maps.geometry.spherical.computeDistanceBetween(me, car)
 	     		           * 0.000621371;
@@ -84,18 +98,20 @@ function getCarsLocations() {
 	     			shortDist = dist;
 	     		addToMap(usrname, dist, lat, lng); // add driver to the API
 	     	}	
+	     	addMe(); //fix the shortest distance to a driver
      	}
   	}
   	
   	// Step 5: Send my information to the server
   	request.send("username=G1cLpMu7B2&lat=" + myLat + "&lng=" + myLng);
+
 }
 
 function addToMap(name, dist, lat, lng) {
 	car = new google.maps.LatLng(lat, lng);
 	
 	// create a marker
-	var marker = new google.maps.Marker({
+	var marker;/* = new google.maps.Marker({
 		position: car,
 		title: "" + name + " is " + dist.toFixed(3) +  " miles to passenger",
 		icon: 'car.png'
@@ -106,8 +122,30 @@ function addToMap(name, dist, lat, lng) {
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
+	});*/
+	if (Object.keys(data)[0] == "vehicles") {
+		console.log("wow");
+		marker = new google.maps.Marker({
+			position: car,
+			title: "" + name + " is " + dist.toFixed(3) +
+			  " miles from passenger",
+			icon: 'car.jpg'
+		});
+	} else {
+		marker = new google.maps.Marker({
+			position: car,
+			title: "" + name + " is " + dist.toFixed(3) +
+			  " miles to driver",
+			icon: 'icon.png'
+		});
+	}
+	marker.setMap(map);
+		
+	// create info window that displays on click
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(marker.title);
+		infowindow.open(map, marker);
 	});
+
 }
-
-
 
