@@ -9,14 +9,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            var old = document.getElementById("log");
             var oldMsgs = '';
+            var keys = [];
             for (i = 0; i < localStorage.length; i++) {
-                oldMsgs += '<div>' + localStorage[localStorage.key(i)] + '</div>';
+                keys.push(localStorage.key(i));
             }
+            keys.sort();
+            for (i = 0; i < localStorage.length; i++) {
+                var newMsg = localStorage.getItem(keys[i]);
+                oldMsgs = '<div>' + newMsg + '</div>' + oldMsgs;
+            }
+            old.innerHTML = oldMsgs;
             $('#msg').change(function () {
                 var date = new Date();
                 var value = '<div>' + date + " - " + $('#msg').val() + '</div>';
-                localStorage.setItem(date, value);
+                localStorage.setItem(date.getTime(), value);
                 value += oldMsgs;
                 oldMsgs = value;
                 $('#log').html(value);
