@@ -8,7 +8,21 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        // Your work will be done here...
+        $(document).ready(function() {
+            var oldMsgs = '';
+            for (i = 0; i < localStorage.length; i++) {
+                oldMsgs += '<div>' + localStorage[localStorage.key(i)] + '</div>';
+            }
+            $('#msg').change(function () {
+                var date = new Date();
+                var value = '<div>' + date + " - " + $('#msg').val() + '</div>';
+                localStorage.setItem(date, value);
+                value += oldMsgs;
+                oldMsgs = value;
+                $('#log').html(value);
+            })
+        })
+        
     </script>
 </head>
 

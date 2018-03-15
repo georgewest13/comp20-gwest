@@ -1,0 +1,14 @@
+html {
+    background-color: #00c7fa;
+}
+
+h1, h3, #log {
+	font-family: 'Times New Roman';
+    color: white;
+}
+
+h1 {
+	outline: 3px dashed black;
+	text-align: center;
+	font-size: 48px;
+}
