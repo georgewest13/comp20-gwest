@@ -73,7 +73,7 @@ function getCarsLocations() {
 	var request = new XMLHttpRequest();
 
 	// Step 2: Open XHR
-	request.open("POST", "https://young-brushlands-71700.herokuapp.com/rides", true);
+	request.open("POST", "https://young-brushland-71700.herokuapp.com/rides", true);
 
     // Step 3: Set the request header to be returned
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
