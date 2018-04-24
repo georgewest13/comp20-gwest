@@ -1,0 +1,12 @@
+h1 {
+	text-align: center;
+	border-style: dashed;
+}
+
+span {
+	font-weight: bold; 
+}
+
+.number {
+	font-size: 20px;
+}
